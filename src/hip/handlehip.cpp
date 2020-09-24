@@ -546,8 +546,13 @@ rocblas_handle_ptr Handle::CreateRocblasHandle() const
 {
     rocblas_handle x = nullptr;
     rocblas_create_handle(&x);
+    rocblas_set_atomics_mode(x, rocblas_atomics_not_allowed);
     auto result = rocblas_handle_ptr{x};
     rocblas_set_stream(result.get(), GetStream());
+
+    rocblas_atomics_mode rb_mode;
+    rocblas_get_atomics_mode(x, &rb_mode);
+    std::cout << "rocblas atomics mode: " << rb_mode << std::endl;
     return result;
 }
 #endif
