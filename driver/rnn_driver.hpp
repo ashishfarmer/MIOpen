@@ -652,7 +652,7 @@ int RNNDriver<Tgpu, Tref>::AllocateBuffersAndCopy()
 
     // Unless seed is persistent between runs validation using cache stored in file is impossible.
     srand(0);
-    double scale = 0.01;
+    double scale = 0.5;
 
     /*    bool dataRead = false;
         bool weiRead = false;
